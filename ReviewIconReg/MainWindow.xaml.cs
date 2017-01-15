@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using AssociatedWinIcon;
+using ReviewIconReg.Helpers;
+using ReviewIconReg.ViewModel;
 
 namespace ReviewIconReg
 {
@@ -20,9 +12,38 @@ namespace ReviewIconReg
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private readonly IAssociatedWinIcon _associatedWinIcon;
+
+		private IEnumerable<ListIconItem> _icons;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			_associatedWinIcon = new AssociatedWinIcon.AssociatedWinIcon();
+
+			_icons = _associatedWinIcon.GetRegExtensions()
+					.Select(e => new ListIconItem
+						{
+							ExtName = e,
+							IconImage = _associatedWinIcon.GetIcon(e)
+											.ToImageSource()
+						});
+
+//			foreach (var item in _icons)
+//			{
+//				var icon = _associatedWinIcon.GetIcon(item.ExtName);
+//
+//				if (icon != null) item.IconImage = icon.ToImageSource();
+//			}
+
+			listBox.ItemsSource = _icons;
+
+//			foreach (var item in _icons)
+//			{
+//				listBox.Items.Add(item);
+//			}
 		}
+
 	}
 }
