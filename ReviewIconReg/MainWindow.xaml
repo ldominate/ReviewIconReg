@@ -7,11 +7,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
 	<Grid>
-		<TextBox x:Name="textBox" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-		<ListBox x:Name="listBox" Margin="10,38,10,10" VerticalContentAlignment="Stretch">
+		<TextBox x:Name="textBox" Height="23" Margin="10,10,10,0"
+			TextWrapping="Wrap"
+			VerticalAlignment="Top"
+			KeyDown="nameTextBox_KeyDown"/>
+		<ListBox x:Name="listBox" Margin="10,38,10,10"
+			VerticalContentAlignment="Stretch"
+			SelectedValuePath="ExtName"
+			SelectedValue="{Binding Text, UpdateSourceTrigger=PropertyChanged, ElementName=textBox}"
+			SelectionMode="Single">
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
-					<WrapPanel Orientation="Horizontal" ItemWidth="50" Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=ActualWidth}" VerticalAlignment="Stretch"/>
+					<WrapPanel Orientation="Horizontal"
+						ItemWidth="50"
+						Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, Path=ActualWidth}"
+						VerticalAlignment="Stretch"/>
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 			<ListBox.ItemTemplate>
@@ -22,7 +32,7 @@
 								<RowDefinition />
 							</Grid.RowDefinitions>
 							<Image Source="{Binding IconImage}" Width="32" />
-							<TextBlock Grid.Row="1" Text="{Binding ExtName}" VerticalAlignment="Center"/>
+							<TextBlock Grid.Row="1" Text="{Binding ExtName}" HorizontalAlignment="Center"/>
 						</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>

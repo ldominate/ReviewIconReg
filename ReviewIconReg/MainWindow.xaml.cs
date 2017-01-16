@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using AssociatedWinIcon;
 using ReviewIconReg.Helpers;
 using ReviewIconReg.ViewModel;
@@ -30,19 +32,20 @@ namespace ReviewIconReg
 											.ToImageSource()
 						});
 
-//			foreach (var item in _icons)
-//			{
-//				var icon = _associatedWinIcon.GetIcon(item.ExtName);
-//
-//				if (icon != null) item.IconImage = icon.ToImageSource();
-//			}
-
 			listBox.ItemsSource = _icons;
+		}
 
-//			foreach (var item in _icons)
-//			{
-//				listBox.Items.Add(item);
-//			}
+		private void nameTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+//			listBox.ItemsSource = _icons.Where(i => i.ExtName.Contains(textBox.Text));
+
+			if (e.Key == Key.Enter)
+			{
+				var listBoxItem = (ListBoxItem)listBox.ItemContainerGenerator.ContainerFromIndex(listBox.SelectedIndex);
+
+				listBoxItem.Focus();
+				e.Handled = true;
+			}
 		}
 
 	}
