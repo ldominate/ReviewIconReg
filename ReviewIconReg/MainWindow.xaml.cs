@@ -32,7 +32,7 @@ namespace ReviewIconReg
 											.ToImageSource()
 						});
 
-			listBox.ItemsSource = _icons;
+			ListBox.ItemsSource = _icons;
 		}
 
 		private void nameTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -41,7 +41,7 @@ namespace ReviewIconReg
 
 			if (e.Key == Key.Enter)
 			{
-				var listBoxItem = (ListBoxItem)listBox.ItemContainerGenerator.ContainerFromIndex(listBox.SelectedIndex);
+				var listBoxItem = (ListBoxItem)ListBox.ItemContainerGenerator.ContainerFromIndex(ListBox.SelectedIndex);
 
 				listBoxItem.Focus();
 				e.Handled = true;
