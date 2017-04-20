@@ -39,7 +39,7 @@ namespace ReviewIconReg
 		{
 //			listBox.ItemsSource = _icons.Where(i => i.ExtName.Contains(textBox.Text));
 
-			if (e.Key == Key.Enter)
+			if (e.Key == Key.Enter && ListBox.SelectedIndex > 0)
 			{
 				var listBoxItem = (ListBoxItem)ListBox.ItemContainerGenerator.ContainerFromIndex(ListBox.SelectedIndex);
 
